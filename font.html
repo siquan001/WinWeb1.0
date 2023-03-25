@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Icon Font Preview</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    @font-face {
+      font-family: IconFont;
+      src: url(./assets/SettingsIcons.woff2);
+    }
+    li{
+      margin:20px;
+      float: left;
+      list-style: none;
+      height: 50px;
+      width: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    li p.ic{
+      font-family: IconFont;
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+  </ul>
+  <script>
+    var container=document.querySelector('ul');
+    fetch('./assets/SettingsIcons.json').then(r=>r.json()).then(function(data){
+      for (var i = 0; i < data.e.length; i++) {
+        var li=document.createElement('li');
+        li.innerHTML=`<p class="ic">${unescape('%ue'+getCode(parseInt(data.e[i],16)))}</p><p class="me">e${data.e[i]}</p>`;
+        container.append(li);
+      }
+      for (var i = 0; i < data.f.length; i++) {
+        var li=document.createElement('li');
+        li.innerHTML=`<p class="ic">${unescape('%uf'+getCode(parseInt(data.f[i],16)))}</p><p class="me">f${data.f[i]}</p>`;
+        container.append(li);
+      }
+      
+    })
+    function getCode(num){
+      var a=0xf;
+      var b=0xff;
+      if(num<=a){
+        return '00'+num.toString(16);
+      }else if(num<=b){
+        return '0'+num.toString(16);
+      }else{
+        return num.toString(16)
+      }
+    }
+  </script>
+</body>
+</html>
