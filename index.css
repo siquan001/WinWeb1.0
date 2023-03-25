@@ -176,6 +176,11 @@
   width: 100%;
   height: 50px;
   background-color: rgb(0,0,0,.8);
+  box-shadow:0 1px 5px #0009;
+  z-index:999;
+  position:absolute;
+  bottom:0;
+  left:0;
 }
 .toolbar .left{
   float: left;
@@ -195,4 +200,23 @@
 .winkey:hover{
   color: #09f;
   background-color: rgba(255,255,255,.2);
+}
+
+.qframe{
+  position:absolute;
+  background:rgb(0,0,0,.8);
+}
+.winframe{
+  width:550px;
+  height:550px;
+  left:0;
+  bottom:50px;
+  transition:all .3s;
+  opacity:0;
+  pointer-events: none;
+}
+.winframe.active{
+  opacity:1;
+  height:600px;
+  pointer-events: all;
 }
